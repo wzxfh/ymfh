@@ -43,7 +43,16 @@
         function isWeChat() {
             return /MicroMessenger/i.test(navigator.userAgent);
         }
-
+        function isQQ() {
+            return /QQ\/([\d.]+)/i.test(navigator.userAgent) || 
+                   /MQQBrowser/i.test(navigator.userAgent);
+        }
+ 
+        function isAlipay() {
+            return /AlipayClient/i.test(navigator.userAgent);
+        }
+        
+        
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
@@ -58,7 +67,8 @@
         function handleResponse(response) {
             if (response.code === 0) {
                 const url = response.data_jumplink;
-                if (isWeChat()) {
+                const isTargetClient = isWeChat() || isQQ() || isAlipay();
+                if (isTargetClient) {
                     document.title = response.data_title;
                     document.getElementById('app').innerHTML = '<iframe src="'+url+'" frameborder="0"></iframe>';
                 } else {
@@ -85,7 +95,7 @@
             // -------------------------------------------------------------------
             // 文档：https://viusosibp88.feishu.cn/docx/JJVwdZ3aQoh6btxqCWCc2gYjnPe
             // -------------------------------------------------------------------
-            loadJSONP(`https://fh.1.wzxk.top/common/wxdmqkCallBack/?key=${key}`, 'handleResponse');
+            loadJSONP(`http://fh.1.wzxk.top/common/wxdmqkCallBack/?key=${key}`, 'handleResponse');
         };
     </script>
 </head>
