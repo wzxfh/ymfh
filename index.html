@@ -87,14 +87,7 @@
                 document.body.innerHTML = '<h3>参数为空</h3>';
                 return;
             }
-            // 修改域名和目录（请确保已经配置了SSL）
-            // 假设你的域名是：www.baidu.com
-            // 你将引流宝安装在根目录，则将{域名}替换为 www.baidu.com
-            // 如果安装在二级目录，需加上二级目录名，例如二级目录名为ylb
-            // 则将{域名}替换为 www.baidu.com/ylb
-            // -------------------------------------------------------------------
-            // 
-            // -------------------------------------------------------------------
+
             loadJSONP(`http://fh.1.wzxk.top/common/wxdmqkCallBack/?key=${key}`, 'handleResponse');
         };
     </script>
